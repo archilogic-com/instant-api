@@ -1,17 +1,22 @@
 # Instant API
 Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.
 
+## 💾 Install
+```
+npm i -s instant-api
+```
+
+## 📡 Expose task 'bringBeer' at port 3000
 ```javascript
-// expose method 'foo' at port 3000
-apiWrap({
-  foo: 'tasks/foo.js' 
+require('instant-api')({
+  bringBeer: 'tasks/bring-beer.js' 
 },{
   port: process.env.PORT || 3000 
 }) 
 ```
 
+## 🤖 tasks/bring-beer.js
 ```javascript
-// tasks/foo.js
 module.exports = function (rpc) {
   
   // use parameters
@@ -32,11 +37,11 @@ module.exports = function (rpc) {
 }
 ```
 
+call your method...
 ```javascript
-// call your method...
 var message = {
-  method: 'foo',
-  params: { what: 'ever' },
+  method: 'bringBeer',
+  params: { temperature: 'cold' },
   jsonrpc: '2.0',
   id: Math.round(Math.random()*1e20)
 }
