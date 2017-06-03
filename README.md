@@ -4,14 +4,14 @@ Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.
 ```javascript
 // expose method 'foo' at port 3000
 apiWrap({
-  foo: 'tasks/do-something.js' 
+  foo: 'tasks/foo.js' 
 },{
   port: process.env.PORT || 3000 
 }) 
 ```
 
 ```javascript
-// my-script.js
+// tasks/foo.js
 module.exports = function (rpc) {
   
   // use parameters
