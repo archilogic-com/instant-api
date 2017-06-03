@@ -36,7 +36,7 @@ module.exports = function (rpc) {
 }
 ```
 
-**📣  Call your method...**
+**📣  Call task...**
 ```javascript
 var message = {
   method: 'bringBeer',
