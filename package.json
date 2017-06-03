@@ -1,0 +1,29 @@
+{
+  "name": "instant-api",
+  "version": "0.0.1",
+  "description": "Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.",
+  "homepage": "https://github.com/archilogic-com/instant-api",
+  "repository": "archilogic-com/instant-api",
+  "license": "MIT",
+  "author": {
+    "name": "archilogic",
+    "email": "dev.rocks@archilogic.com",
+    "url": "https://archilogic.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "example": "node example/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "express-websocket": "0.0.1",
+    "morgan": "^1.8.2",
+    "ws": "^3.0.0"
+  },
+  "devDependencies": {
+    "request": "^2.81.0"
+  }
+}

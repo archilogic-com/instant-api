@@ -1,0 +1,17 @@
+# IDE settings
+.idea
+.idea_modules
+*.sublime-project
+*.sublime-workspace
+*.cache
+*.settings
+*.classpath
+*.project
+
+#node modules
+node_modules
+
+# System
+.DS_Store
+._*
+
