@@ -8,11 +8,10 @@ npm i -s instant-api
 
 **📡  Expose task 'bringBeer' at port 3000**
 ```javascript
-require('instant-api')({
-  bringBeer: 'tasks/bring-beer.js' 
-},{
-  port: process.env.PORT || 3000 
-})
+var tasks = {
+  'bringBeer': require('./tasks/bring-beer')
+}
+require('instant-api')(tasks ,{ port: process.env.PORT || 3000 })
 ```
 
 **🤖  tasks/bring-beer.js**

@@ -19,19 +19,17 @@ module.exports = function instantApi (exposedMethods, options) {
 
   // check
   if (!exposedMethods) throw new Error('Please provide a filename, directory or array with filenames.')
-  if (!typeof exposedMethods !== 'object') throw new Error('First argument must be of type string or array.')
+  if (typeof exposedMethods !== 'object') throw new Error('First argument must be of type string or array.')
 
   // create RPC server
   var rpcServer = new JsonRpc2Server()
-
   // expose methods
-  Object.keys(args).forEach(function (methodName) {
-    rpcServer.exposeModule(methodName, require('./' + args[methodName]))
+  Object.keys(exposedMethods).forEach(function (methodName) {
+    rpcServer.exposeModule(methodName, exposedMethods[methodName])
   })
 
   // create express server
   var app = express()
-
   // enable debugging in non production environment
   if (process.env.NODE_ENV !== 'production') {
     app.set('showStackError', true)
@@ -46,7 +44,6 @@ module.exports = function instantApi (exposedMethods, options) {
       callback(null, origin)
     }
   }))
-
   // handle HTTP requests
   app.post('/',
     bodyParser.text({limit: '5000kb', type: '*/*'}),
@@ -104,10 +101,4 @@ module.exports = function instantApi (exposedMethods, options) {
     console.log('Server listening on http://localhost:' + port)
   })
 
-}
-
-// helpers
-
-function pathWithoutJsExtension (path) {
-  return path.substr(0, path.length - 3)
 }

@@ -2,7 +2,9 @@ var instantApi = require('../index')
 
 // ----- start API server -----
 
-instantApi({'sayHi': 'example/hi.js'})
+instantApi({
+  'sayHi': require('./hi')
+})
 
 // ----- send request -----
 
