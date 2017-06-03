@@ -12,7 +12,7 @@ require('instant-api')({
   bringBeer: 'tasks/bring-beer.js' 
 },{
   port: process.env.PORT || 3000 
-}) 
+})
 ```
 
 **🤖  tasks/bring-beer.js**
@@ -23,7 +23,7 @@ module.exports = function (rpc) {
   console.log(rpc.params)
   
   // return result
-  rpc.sendResult('bar')
+  rpc.sendResult('cheers')
   
   // return param error
   //rpc.sendParamsError('Missing parameter ...')
