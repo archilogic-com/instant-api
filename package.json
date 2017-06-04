@@ -1,6 +1,6 @@
 {
   "name": "instant-api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.",
   "homepage": "https://github.com/archilogic-com/instant-api",
   "repository": "archilogic-com/instant-api",

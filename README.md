@@ -6,15 +6,15 @@ Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.
 npm i -s instant-api
 ```
 
-**📡  Expose task 'bringBeer' at port 3000**
+**📡  Expose task 'makeSoup' at port 3000**
 ```javascript
 var tasks = {
-  'bringBeer': require('./tasks/bring-beer')
+  'makeSoup': require('./tasks/make-soup')
 }
 require('instant-api')(tasks ,{ port: process.env.PORT || 3000 })
 ```
 
-**🤖  tasks/bring-beer.js**
+**🤖  tasks/make-soup.js**
 ```javascript
 module.exports = function (rpc) {
   
@@ -22,13 +22,13 @@ module.exports = function (rpc) {
   console.log(rpc.params)
   
   // return result
-  rpc.sendResult('Cheers')
+  rpc.sendResult('Done. Enjoy!')
   
   // return param error
   //rpc.sendParamsError('Missing parameter ...')
   
   // return custom error
-  //rpc.sendError('Boom')
+  //rpc.sendError('Splash')
   
   // use in promise chains
   // rawQuery(query).then(rpc.sendResult).catch(rpc.sendError)
@@ -39,8 +39,8 @@ module.exports = function (rpc) {
 **📣  Call task...**
 ```javascript
 var message = {
-  method: 'bringBeer',
-  params: { temperature: 'cold' },
+  method: 'makeSoup',
+  params: { size: 'medium' },
   jsonrpc: '2.0',
   id: Math.round(Math.random()*1e20)
 }

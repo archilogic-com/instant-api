@@ -4,7 +4,7 @@
 
 
 var tasks = {
-  'bringBeer': require('./tasks/bring-beer')
+  'makeSoup': require('./tasks/make-soup')
 }
 var api = require('../index')(tasks ,{ port: process.env.PORT || 3000 })
 
@@ -13,8 +13,8 @@ var api = require('../index')(tasks ,{ port: process.env.PORT || 3000 })
 
 
 var message = {
-  method: 'bringBeer',
-  params: { temperature: 'cold' },
+  method: 'makeSoup',
+  params: { size: 'medium' },
   jsonrpc: '2.0',
   id: Math.round(Math.random()*1e20)
 }
