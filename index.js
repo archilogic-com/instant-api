@@ -3,7 +3,7 @@ var path = require('path')
 var fs = require('fs')
 var ws = require('ws')
 var express = require('express')
-var cors = require('cors')
+var corsMiddleware = require('cors')
 var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var handleWebsocketUpgrade = require('express-websocket')
@@ -16,6 +16,13 @@ module.exports = function instantApi (exposedMethods, options) {
   options = options || {}
   var port = options.port ? options.port : ( process.env.PORT || 3000 )
   var wsKeepAlive = options.wsKeepAlive !== undefined ? options.wsKeepAlive : true
+  var cors = options.cors !== undefined ? options.cors : corsMiddleware({
+    // allow any origin
+    credentials: true,
+    origin: function (origin, callback) {
+      callback(null, origin)
+    }
+  })
 
   // check
   if (!exposedMethods) throw new Error('Please provide a filename, directory or array with filenames.')
@@ -38,12 +45,7 @@ module.exports = function instantApi (exposedMethods, options) {
   // get client ip
   app.use(getClientIp)
   // configure CORS to allow all origins
-  app.use(cors({
-    credentials: true,
-    origin: function (origin, callback) {
-      callback(null, origin)
-    }
-  }))
+  app.use(cors)
   // handle HTTP requests
   app.post('/',
     bodyParser.text({limit: '5000kb', type: '*/*'}),
@@ -100,5 +102,11 @@ module.exports = function instantApi (exposedMethods, options) {
     // ready to go ;)
     console.log('Server listening on http://localhost:' + port)
   })
+
+  // expose server
+  return {
+    server: httpServer,
+    expressApp: app
+  }
 
 }
