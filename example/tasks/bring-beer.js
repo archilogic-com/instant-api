@@ -4,7 +4,7 @@ module.exports = function (rpc) {
   console.log(rpc.params)
 
   // return result
-  rpc.sendResult('hello world!')
+  rpc.sendResult('Cheers')
 
   // return param error
   //rpc.sendParamsError('Missing parameter ...')
