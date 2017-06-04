@@ -1,25 +1,34 @@
-var instantApi = require('../index')
 
-// ----- start API server -----
 
-instantApi({
-  'sayHi': require('./hi')
-})
+// _________________ start API server _________________
 
-// ----- send request -----
+
+var tasks = {
+  'bringBeer': require('./tasks/bring-beer')
+}
+var api = require('../index')(tasks ,{ port: process.env.PORT || 3000 })
+
+
+// _____________________ call task _____________________
+
+
+var message = {
+  method: 'bringBeer',
+  params: { temperature: 'cold' },
+  jsonrpc: '2.0',
+  id: Math.round(Math.random()*1e20)
+}
 
 require('request').post({
   url: 'http://localhost:3000',
-  json: {
-    method: 'sayHi',
-    params: { what: 'ever' },
-    jsonrpc: '2.0',
-    id: Math.round(Math.random()*1e20)
-  }
+  json: message
 }, function (error, response, body) {
+  // parse message
   if (!error && response.statusCode === 200) {
-    console.log('OK')
+    console.log(body.result)
   } else {
     console.error(error || body)
   }
+  // shut down API server because we don't need further
+  api.server.close()
 })

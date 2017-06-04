@@ -22,7 +22,7 @@ module.exports = function (rpc) {
   console.log(rpc.params)
   
   // return result
-  rpc.sendResult('cheers')
+  rpc.sendResult('Cheers')
   
   // return param error
   //rpc.sendParamsError('Missing parameter ...')
@@ -77,3 +77,7 @@ require('request').post({
 
 ```
 
+[**🕹  Run example**](example/index.js)
+```
+npm run example
+```
