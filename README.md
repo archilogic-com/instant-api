@@ -64,6 +64,7 @@ ws.onmessage = function (event) {
 }
 
 // ... from another server
+// npm install --save request
 require('request').post({
   url: 'http://localhost:3000',
   json: message
