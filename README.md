@@ -1,12 +1,12 @@
 # Instant API
 Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.
 
-**💾  Install**
+**💾&nbsp;Install**
 ```
 npm i -s instant-api
 ```
 
-**📡  Expose task 'makeSoup' at port 3000**
+**📡&nbsp;Expose task 'makeSoup' at port 3000**
 ```javascript
 var tasks = {
   'makeSoup': require('./tasks/make-soup')
@@ -14,7 +14,7 @@ var tasks = {
 require('instant-api')(tasks ,{ port: process.env.PORT || 3000 })
 ```
 
-**🤖  tasks/make-soup.js**
+**🤖&nbsp;tasks/make-soup.js**
 ```javascript
 module.exports = function (rpc) {
   
@@ -36,7 +36,7 @@ module.exports = function (rpc) {
 }
 ```
 
-**📣  Call task...**
+**📣&nbsp;Call task...**
 ```javascript
 var message = {
   method: 'makeSoup',
@@ -77,7 +77,7 @@ require('request').post({
 
 ```
 
-[**🕹  Run example**](example/index.js)
+[**🕹&nbsp;Run example**](example/index.js)
 ```
 npm run example
 ```
