@@ -46,7 +46,7 @@ var message = {
 }
 
 // ... from a browser using HTTP
-fetch('localhost:3000', {
+fetch('http://localhost:3000', {
   method: 'POST', body: JSON.stringify( message )
 }).then(function(response){
   return response.json()
