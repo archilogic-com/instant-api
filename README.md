@@ -51,7 +51,7 @@ fetch('http://localhost:3000', {
 }).then(function(response){
   return response.json()
 }).then(function(body){
-  console.log(JSON.parse(body.result))
+  console.log(body.result)
 }).catch(console.error)
  
 // ... from a browser using Websockets
