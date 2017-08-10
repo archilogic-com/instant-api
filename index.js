@@ -15,6 +15,7 @@ module.exports = function instantApi (exposedMethods, options) {
   // options
   options = options || {}
   var port = options.port ? options.port : ( process.env.PORT || 3000 )
+  var staticDir = options.staticDir
   var wsKeepAlive = options.wsKeepAlive !== undefined ? options.wsKeepAlive : true
   var cors = options.cors !== undefined ? options.cors : corsMiddleware({
     // allow any origin
@@ -24,7 +25,7 @@ module.exports = function instantApi (exposedMethods, options) {
     }
   })
 
-  // check
+  // check params
   if (!exposedMethods) throw new Error('Please provide a filename, directory or array with filenames.')
   if (typeof exposedMethods !== 'object') throw new Error('First argument must be of type string or array.')
 
@@ -44,7 +45,7 @@ module.exports = function instantApi (exposedMethods, options) {
   }
   // get client ip
   app.use(getClientIp)
-  // configure CORS to allow all origins
+  // configure CORS
   app.use(cors)
   // handle HTTP requests
   app.post('/',
@@ -92,6 +93,11 @@ module.exports = function instantApi (exposedMethods, options) {
 
     })
   })
+
+  // static pages
+  if (staticDir) {
+    app.use(express.static(staticDir))
+  }
 
   // start server
   var httpServer = http.createServer(app)
