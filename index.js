@@ -97,6 +97,7 @@ module.exports = function instantApi (exposedMethods, options) {
   // static pages
   if (staticDir) {
     app.use(express.static(staticDir))
+    console.log('Exposing statics files from: "'+staticDir+'"')
   }
 
   // start server
