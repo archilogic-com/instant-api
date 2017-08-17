@@ -17,22 +17,22 @@ require('instant-api')(tasks ,{ port: process.env.PORT || 3000 })
 **🤖&nbsp;tasks/make-soup.js**
 ```javascript
 module.exports = function (rpc) {
-  
+
   // use parameters
   console.log(rpc.params)
-  
+
   // return result
   rpc.sendResult('Done. Enjoy!')
-  
+
   // return param error
   //rpc.sendParamsError('Missing parameter ...')
-  
+
   // return custom error
   //rpc.sendError('Splash')
-  
+
   // use in promise chains
   // rawQuery(query).then(rpc.sendResult).catch(rpc.sendError)
-  
+
 }
 ```
 
@@ -53,7 +53,7 @@ fetch('http://localhost:3000', {
 }).then(function(body){
   console.log(body.result)
 }).catch(console.error)
- 
+
 // ... from a browser using Websockets
 var ws = new WebSocket('ws://localhost:3000')
 ws.onopen = function () {
@@ -76,6 +76,21 @@ require('request').post({
   }
 })
 
+```
+
+[**🚨&nbsp;Cross origin settings**](example/index.js)
+
+By default, [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) is enabled but does not permit transmitting credentials.
+You can specify allowed CORS domains which will also be able to send credentials:
+
+```javascript
+var tasks = {
+  'makeSoup': require('./tasks/make-soup')
+}
+require('instant-api')(tasks ,{
+  port: process.env.PORT || 3000,
+  corsAllowedDomains: [ 'example.org', 'test.example.org' ]
+})
 ```
 
 [**🕹&nbsp;Run example**](example/index.js)

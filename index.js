@@ -19,9 +19,14 @@ module.exports = function instantApi (exposedMethods, options) {
   var wsKeepAlive = options.wsKeepAlive !== undefined ? options.wsKeepAlive : true
   var cors = options.cors !== undefined ? options.cors : corsMiddleware({
     // allow any origin
-    credentials: true,
+    credentials: !!options.corsAllowedDomains,
     origin: function (origin, callback) {
-      callback(null, origin)
+      var originDomain = origin.replace(/^[^:]+:\/\//, '')
+      var corsOrigin = origin
+      if (options.corsAllowedDomains) {
+        corsOrigin = options.corsAllowedDomains.includes(originDomain) ? origin : null
+      }
+      callback(corsOrigin ? null : `Invalid origin found: ${originDomain}`, corsOrigin)
     }
   })
 
