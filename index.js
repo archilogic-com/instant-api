@@ -21,6 +21,7 @@ module.exports = function instantApi (exposedMethods, options) {
     // allow any origin
     credentials: !!options.corsAllowedDomains,
     origin: function (origin, callback) {
+      if(!origin) return callback(null, '*')
       var originDomain = origin.replace(/^[^:]+:\/\//, '')
       var corsOrigin = origin
       if (options.corsAllowedDomains) {
