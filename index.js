@@ -85,6 +85,9 @@ module.exports = function instantApi (exposedMethods, options) {
       ws.on('close', function () {
         if (interval) clearInterval(interval)
       })
+      ws.on('close', function () {
+        if (interval) clearInterval(interval)
+      })
       // handle messages
       ws.on('message', function (message) {
         rpcServer.handleRequest({
