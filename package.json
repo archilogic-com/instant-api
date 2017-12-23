@@ -1,6 +1,6 @@
 {
   "name": "instant-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Like instant soup but API. JSON-RPC2 flavor with Websockets and HTTP.",
   "homepage": "https://github.com/archilogic-com/instant-api",
   "repository": "archilogic-com/instant-api",
@@ -20,7 +20,7 @@
     "express": "^4.15.3",
     "express-websocket": "0.0.1",
     "morgan": "^1.8.2",
-    "ws": "^3.0.0"
+    "ws": "3.3.2"
   },
   "devDependencies": {
     "request": "^2.81.0"
